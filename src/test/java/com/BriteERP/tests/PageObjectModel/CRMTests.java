@@ -90,10 +90,14 @@ public class CRMTests extends TestBase {
 //        9.Verify the total price and sum up prices are the same
     @Test
     public void acceptanceCriteria2() {
+        extentLogger = report.createTest("Verify that on the pivot table, the total expected revenue\n" +
+                "//            should be the sum of all opportunities’ expected revenue.");
 //        1.Login
+        extentLogger.info("Getting users credentials");
         String username = ConfigurationReader.get("CRM_user_username");
         String password = ConfigurationReader.get("CRM_user_password");
         LoginPage loginPage = new LoginPage();
+        extentLogger.info("Logging in");
         loginPage.login(username, password);
 //        2.Navigate to CRM page
         NavigateBarPage navigateBar = new NavigateBarPage();
@@ -101,15 +105,19 @@ public class CRMTests extends TestBase {
 //        3.Click the pivot button
         CRMPage crmPage = new CRMPage();
         BrowserUtils.waitForClickablility(crmPage.pivotButton, 10);
+        extentLogger.info("click the pivot button");
         crmPage.pivotButton.click();
 //        4.Click the Total button to see the + sign
         BrowserUtils.waitForClickablility(crmPage.totalButtonOpened, 10);
+        extentLogger.info("Click the Total button to see the + sign");
         crmPage.totalButtonOpened.click();
 //        5.Click the Total button again to see the menu
         BrowserUtils.waitForClickablility(crmPage.getTotalButtonClosed, 10);
+        extentLogger.info("Click the Total button again to see the menu");
         crmPage.getTotalButtonClosed.click();
 //        6.Click the opportunity
         BrowserUtils.waitForClickablility(crmPage.opportunity, 10);
+        extentLogger.info("Click the opportunity");
         crmPage.opportunity.click();
 //        7.Verify the Book Sale expected REvenue tatol price
         BrowserUtils.waitForVisibility(crmPage.totalPrice, 10);
